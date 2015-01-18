@@ -29,8 +29,11 @@ class RidesController < ApplicationController
       coord = [rider.latitude, rider.longitude]
       coords.push(coord)
     end
-
+    address = @ride.address
+    # binding.pry
+    @dest_coords = Geocoder.coordinates(address)
     ret = all_the_things(coords)
+    ret = sort_sources(ret,@dest_coords)
     @minPath = ret
     coord_list = Array.new
     @minPath.each do |cluster|
@@ -39,8 +42,7 @@ class RidesController < ApplicationController
       end
     end
     @coord_list = coord_list
-    address = @ride.address
-    @dest_coords = Geocoder.coordinates(address)
+
     respond_with(@ride,@rider_objects, @minPath,@coord_list, @dest_coords )
   end
 

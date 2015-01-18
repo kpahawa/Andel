@@ -3,8 +3,8 @@ require 'k_means'
 require 'geokit'
 require 'json'
 require 'excon'
-#require 'pry'
-#require 'pry-nav'
+require 'pry'
+require 'pry-nav'
 def all_the_things(param)
     data = param
     temp = Marshal.load(Marshal.dump(data))
@@ -273,6 +273,7 @@ end
 
 def sort_sources(sources, destination)
   result = []
+  # binding.pry
   sources.each do |x|
     temp = []
     while x.size > 0

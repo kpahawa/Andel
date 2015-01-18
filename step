@@ -1,0 +1,30 @@
+
+[1mFrom:[0m C:/RailsProjects/Andel/app/controllers/rides_controller.rb @ line 34 RidesController#show:
+
+    [1;34m22[0m: [32mdef[0m [1;34mshow[0m
+    [1;34m23[0m:   arr =  @ride.travelers.split([35m[1;35m%r{[0m[35m,[1;35m\s[0m[35m*[1;35m}[0m[35m[0m)
+    [1;34m24[0m:   @rider_objects = [1;34;4mArray[0m.new
+    [1;34m25[0m:   @rider_objects = convert_to_obj_arr(arr,@rider_objects,@ride.travelers)
+    [1;34m26[0m: 
+    [1;34m27[0m:   coords = []
+    [1;34m28[0m:   @rider_objects.each [32mdo[0m |rider|
+    [1;34m29[0m:     coord = [rider.latitude, rider.longitude]
+    [1;34m30[0m:     coords.push(coord)
+    [1;34m31[0m:   [32mend[0m
+    [1;34m32[0m:   address = @ride.address
+    [1;34m33[0m:   binding.pry
+ => [1;34m34[0m:   @dest_coords = [1;34;4mGeocoder[0m.coordinates(address)
+    [1;34m35[0m:   ret = all_the_things(coords)
+    [1;34m36[0m:   ret = sort_sources(ret,@dest_coords)
+    [1;34m37[0m:   @minPath = ret
+    [1;34m38[0m:   coord_list = [1;34;4mArray[0m.new
+    [1;34m39[0m:   @minPath.each [32mdo[0m |cluster|
+    [1;34m40[0m:     cluster.values.each [32mdo[0m |coord|
+    [1;34m41[0m:       coord_list.push(coord)
+    [1;34m42[0m:     [32mend[0m
+    [1;34m43[0m:   [32mend[0m
+    [1;34m44[0m:   @coord_list = coord_list
+    [1;34m45[0m: 
+    [1;34m46[0m:   respond_with(@ride,@rider_objects, @minPath,@coord_list, @dest_coords )
+    [1;34m47[0m: [32mend[0m
+
