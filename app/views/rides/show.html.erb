@@ -18,10 +18,10 @@
     </div>
   </div>
 
-  <p>Clusters are:</p>
+  <!--<p>Clusters are:</p>-->
 
-  <button class="btn btn-primary"<%= link_to 'Edit', edit_ride_path(@ride), :id => 'edit_graph' %> </button>|
-  <%= link_to 'Back', rides_path %>
+  <%= link_to 'Edit', edit_ride_path(@ride), id: 'edit_graph' , class: "btn btn-info", type: 'button', tag: 'button' %>
+  <%= link_to 'Back', rides_path, id: 'edit_graph' , class: "btn btn-warning", type: 'button', tag: 'button' %>
   <script type="text/javascript">
       function initialize() {
           var coordList = '<%= @coord_list %>';

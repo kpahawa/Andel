@@ -93,6 +93,7 @@
     margin-top: 4em;
     text-align: center;
     margin-bottom: 4em;
+    padding-bottom: 10em;
     background-image: url('sanFranGMap2.JPG');
     width:100%;
 }
@@ -110,4 +111,5 @@
     text-decoration: none;
     font-family: "Lato";
     text-decoration-color: #ffffff;
+    color: white;
 }

@@ -273,10 +273,8 @@ end
 
 def sort_sources(sources, destination)
   result = []
-
-  sources.keys.each do |key|
-    x = sources[key]
-
+  sources.each do |item|
+    x = item.values
     temp = []
     while x.size > 0
       minIndex = 0
@@ -285,6 +283,8 @@ def sort_sources(sources, destination)
       x.each do |y|
         src = Marshal.load(Marshal.dump(y))
         dst = Marshal.load(Marshal.dump(destination))
+        puts src
+        puts dst
         difference = distance src, dst
         if difference < minVal
           mindVal = difference
@@ -295,7 +295,7 @@ def sort_sources(sources, destination)
       temp.push(x[minIndex])
       x.delete_at(minIndex)
     end
-    newHash = {key => temp}
+    newHash = {item.keys => temp}
     result.push(newHash)  
   end
   return result

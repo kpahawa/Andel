@@ -1,6 +1,9 @@
-<h1>Editing ride</h1>
 
-<%= render 'form' %>
+<div class="container" id="show_graph">
+    <h1>Editing ride</h1>
 
-<%= link_to 'Show', @ride %> |
-<%= link_to 'Back', rides_path %>
+    <%= render 'form' , :style => "width: 50%"%>
+
+    <%= link_to 'Show', @ride,id: 'edit_graph' , class: "btn btn-default", type: 'button', tag: 'button' %>
+    <%= link_to 'Back', rides_path,id: 'edit_graph' , class: "btn btn-default", type: 'button', tag: 'button' %>
+</div>
