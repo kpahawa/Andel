@@ -272,12 +272,9 @@ def distance a, b
 end
 
 def sort_sources(sources, destination)
-  print sources
-  puts
-  puts
-  print destination
   result = []
-  sources.each do |x|
+  sources.keys.each do |key|
+    x = sources[key]
     temp = []
     while x.size > 0
       minIndex = 0
@@ -296,7 +293,8 @@ def sort_sources(sources, destination)
       temp.push(x[minIndex])
       x.delete_at(minIndex)
     end
-    result.push(temp)  
+    newHash = {key => temp}
+    result.push(newHash)  
   end
   return result
 end  
