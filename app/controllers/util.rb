@@ -281,6 +281,10 @@ def distance a, b
 end
 
 def sort_sources(sources, destination)
+  print sources
+  puts
+  puts
+  print destination
   result = []
   sources.each do |x|
     temp = []
