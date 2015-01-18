@@ -49,4 +49,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'rails_12factor'
 gem 'pg'
 
-# ruby '2.2.0'
+ruby '2.2.0'
