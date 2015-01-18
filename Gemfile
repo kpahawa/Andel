@@ -47,5 +47,5 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
-ruby '2.2.0'
+# ruby '2.2.0'
 gem 'rails_12factor', group: :production

@@ -78,7 +78,7 @@
 }
 #login-form {
     width: 100%;
-    background-image: url( "sanFran.jpg");
+    background-image: url( "/sanFran.jpg");
     background-attachment: fixed;
 }
 
@@ -94,7 +94,7 @@
     text-align: center;
     margin-bottom: 4em;
     padding-bottom: 10em;
-    background-image: url('sanFranGMap2.JPG');
+    background-image: url('/sanFranGMap2.JPG');
     width:100%;
 }
 
