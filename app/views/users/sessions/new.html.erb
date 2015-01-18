@@ -1,19 +1,59 @@
 <h2 id="devise-forms">Log in</h2>
 
 <div class="container" id="login-form">
-  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-horizontal', id:'devise-forms'}) do |f| %>
-      <div class="form-inputs">
-        <%= f.input :login, required: true, autofocus: true %>
-        <%= f.input :password, required: true %>
-        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-      </div>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class:"container"}) do |f| %>
+      <div class="form-inputs row centered-form">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  Please Log-In or Sign up below
+                </div>
+              </div>
+            </div>
+          </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <%= f.input :login, required: true, autofocus: true , :placeholder => "Username",label: false, class:"form-control input-sm"%>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <div class="form-actions">
-        <%= f.button :submit, "Log in" %>
+        <div class="row">
+          <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <%= f.input :password, required: true, :placeholder => "Password",label: false, class:"form-control input-sm" %>
+                <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="form-actions">
+                  <%= f.button :submit, "Log in", :class => "btn btn-info btn-block", :id => "deviseActionButtons" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+              <div class="panel-heading">
+                 <%= render "users/shared/links" %>
+              </div>
+          </div>
+        </div>
+
       </div>
   <% end %>
 
-  <%= render "users/shared/links" %>
 
+    </div>
 </div>
-

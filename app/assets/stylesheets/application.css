@@ -31,11 +31,11 @@
     font-family: "Lato";
 }
 #navRow {
-    padding-bottom: 1.3em;
+    #padding-bottom: 1.3em;
 }
 #fixedNavBar {
     padding-top: 1em;
-    padding-bottom: 1em;
+    #padding-bottom: 1em;
     text-align: center;
     font-family: "Lato";
 
@@ -52,4 +52,44 @@
 #devise-forms {
     font-family: "Lato";
     font-size: 1.5rem;
+    text-align: center;
+}
+
+#container1 {
+    background-color: #e2dada;
+}
+
+.centered-form {
+    margin-top: 120px;
+    margin-bottom: 120px;
+}
+
+.centered-form .panel {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+}
+
+#deviseActionButtons {
+    text-decoration: none;
+    padding-left: 5em;
+    font-family: "Lato";
+    font-size: 1.5rem;
+    color:#ffffff;
+}
+#login-form {
+    width: 100%;
+    background-image: url( "sanFran.jpg");
+    background-attachment: fixed;
+}
+
+#rendered_links {
+    text-decoration:none;
+    font-family: 'Lato';
+    font-size: 1.5em;
+
+}
+
+#rideInput {
+    margin-top: 10em;
+    text-align: center;
 }
