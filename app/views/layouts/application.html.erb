@@ -10,19 +10,131 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,700" rel="stylesheet" type="text/css">
   <!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>-->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1FYLmtIJJvFVaOaI_znQPH-TlZIf_VXo">  </script>
-  <link src="../assets/application.css" type="text/css">
+  <!-- <link src="../assets/application.css" type="text/css">
     <link src="/assets/application.css" type="text/css">
   <link src="/application.css" type="text/css">
   <link src="application.css" type="text/css">
   <link src="../../assets/stylesheets/application.css" type="text/css">
     <link src="stylesheets/application.css" type="text/css">
         <link src="../stylesheets/application.css" type="text/css">
-                <link src="/stylesheets/application.css" type="text/css">
+                <link src="/stylesheets/application.css" type="text/css"> -->
+    <style type="text/css">
+      /*
+   * This is a manifest file that'll be compiled into application.css, which will include all the files
+   * listed below.
+   *
+   * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+   * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+   *
+   * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+   * compiled file so the styles you add here take precedence over styles defined in any styles
+   * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+   * file per style scope.
+   *
+   *= require_tree .
+   *= require_self
+   */
 
+  #user-nav {
+      font-size: 1.5rem;
+      padding-left: 2em;
+  }
+  #navButtons {
+      font-size: 1.5rem;
+      padding:5px;
+      color: #ffffff;
+      text-decoration:none;
+      font-family: "Lato";
 
+  }
 
+  #NavBar{
+      font-family: "Lato";
+  }
+  #navRow {
+      #padding-bottom: 1.3em;
+  }
+  #fixedNavBar {
+      padding-top: 1em;
+      #padding-bottom: 1em;
+      text-align: center;
+      font-family: "Lato";
 
+  }
 
+  #navButtonsActiveUser {
+      font-size: 1.5rem;
+      padding:5px;
+      color: #ffffff;
+      text-decoration:none;
+      font-family: "Lato";
+  }
+
+  #devise-forms {
+      font-family: "Lato";
+      font-size: 1.5rem;
+      text-align: center;
+  }
+
+  #container1 {
+      background-color: #e2dada;
+  }
+
+  .centered-form {
+      margin-top: 120px;
+      margin-bottom: 120px;
+  }
+
+  .centered-form .panel {
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+  }
+
+  #deviseActionButtons {
+      text-decoration: none;
+      padding-left: 5em;
+      font-family: "Lato";
+      font-size: 1.5rem;
+      color:#ffffff;
+  }
+  #login-form {
+      width: 100%;
+      background-image: url( "http://imgur.com/E7E0KQt");
+      background-attachment: fixed;
+  }
+
+  #rendered_links {
+      text-decoration:none;
+      font-family: 'Lato';
+      font-size: 1.5em;
+
+  }
+
+  #rideInput {
+      margin-top: 4em;
+      text-align: center;
+      margin-bottom: 4em;
+      padding-bottom: 10em;
+      background-image: url('http://imgur.com/XvZQS57 ');
+      width:100%;
+  }
+
+  #new_ride {
+      width:50%;
+      margin:auto;
+  }
+
+  #show_graph {
+      margin-top: 5em;
+  }
+
+  #edit_graph {
+      text-decoration: none;
+      font-family: "Lato";
+      text-decoration-color: #ffffff;
+      color: white;
+  }
+    </style>
   <%= csrf_meta_tags %>
 </head>
 <body style="margin:0px;">
