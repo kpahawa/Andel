@@ -66,30 +66,23 @@ def all_the_things(param)
 
     groupings = []
     solution = solution.delete_if { |elem| elem.flatten.empty? }
-    print solution
-    puts
-    puts
+
     solution.each do |x|
         toGroup = []
         x.each do |y|
             toGroup.push(data[y])
         end
-        print toGroup
-        puts
-        puts
+
         while toGroup.size > 0
             toRet = []
             toCompare = toGroup[0]
-            puts toCompare
             toRet.push(toCompare)
             toGroup.delete(toCompare)
             toGroup.each do |item|
                 a = Marshal.load(Marshal.dump(toCompare))
                 b = Marshal.load(Marshal.dump(item))
                 difference = distance a, b
-                print difference
-                puts
-                puts
+
                 if difference < 4023
                     toRet.push(item)
                     toGroup.delete(item)
@@ -98,8 +91,6 @@ def all_the_things(param)
             groupings.push(toRet)
         end   
     end
-
-    print groupings
 
     ret = []
     assignedUbers = []

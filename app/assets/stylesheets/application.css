@@ -101,3 +101,13 @@
     width:50%;
     margin:auto;
 }
+
+#show_graph {
+    margin-top: 5em;
+}
+
+#edit_graph {
+    text-decoration: none;
+    font-family: "Lato";
+    text-decoration-color: #ffffff;
+}
