@@ -33,7 +33,7 @@ class RidesController < ApplicationController
     # binding.pry
     @dest_coords = Geocoder.coordinates(address)
     ret = all_the_things(coords)
-    # ret = sort_sources(ret,@dest_coords)
+    ret = sort_the_sources(ret,@dest_coords)
     @minPath = ret
     coord_list = Array.new
     @minPath.each do |cluster|

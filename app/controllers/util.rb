@@ -3,10 +3,10 @@ require 'k_means'
 require 'geokit'
 require 'json'
 require 'excon'
-require 'pry'
-require 'pry-nav'
+#require 'pry'
+#require 'pry-nav'
 def all_the_things(param)
-    data = param
+    data = [[37.82954724, -122.43192352], [37.8209866, -122.4598095], [37.8119052, -122.43173582], [37.73665126, -122.40772316]]
     temp = Marshal.load(Marshal.dump(data))
     xpos = temp[0][0] > 0
     ypos = temp[0][1] > 0
@@ -271,29 +271,28 @@ def distance a, b
   return rm * c # Delta in meters
 end
 
-def sort_sources(sources, destination)
+def sort_the_sources(sources, destination)
   result = []
   sources.each do |item|
-    x = item.values
+    vals = item.values
+    x = vals[0]
     temp = []
     while x.size > 0
-      minIndex = 0
-      minVal = 99999999
+      maxIndex = 0
+      maxVal = 0
       index = 0
       x.each do |y|
         src = Marshal.load(Marshal.dump(y))
         dst = Marshal.load(Marshal.dump(destination))
-        puts src
-        puts dst
         difference = distance src, dst
-        if difference < minVal
-          mindVal = difference
-          minIndex = index
+        if difference > maxVal
+          maxVal = difference
+          maxIndex = index
         end
         index+=1
       end
-      temp.push(x[minIndex])
-      x.delete_at(minIndex)
+      temp.push(x[maxIndex])
+      x.delete_at(maxIndex)
     end
     newHash = {item.keys => temp}
     result.push(newHash)  
