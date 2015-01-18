@@ -1,65 +1,67 @@
 <div class="container" id="rideInput">
   <h1>Hello <%= current_user.username %></h1>
 
-</div>
-
-<% found = false %>
-<% userRide = nil %>
-<% if @all_rides.length == 0 %>
-    <%= simple_form_for(Ride.new) do |f| %>
-        <%= f.error_notification %>
-
-        <div class="form-inputs">
-          <%= f.input :address, :required => true %>
-          <%= f.input :travelers , :required => true%>
-        </div>
-
-        <div class="form-actions">
-          <%= f.button :submit %>
-        </div>
-    <% end %>
-  <% end %>
-<% @all_rides.each do |ride| %>
-    <% if ride.include? current_user %>
-        <% found = true %>
-        <% userRide = ride %>
-        <% break %>
-    <% else %>
-        <%= simple_form_for(Ride.new ,html: { class: 'form-horizontal' }) do |f| %>
+    <% found = false %>
+    <% userRide = nil %>
+    <% if @all_rides.length == 0 %>
+      <h2>Where will you be traveling today?</h2>
+        <%= simple_form_for(Ride.new) do |f| %>
             <%= f.error_notification %>
 
             <div class="form-inputs">
               <%= f.input :address, :required => true %>
-              <%= f.input :travelers , :required => true%>
+              <%= f.input :travelers , :required => true, :label => "Travelers (comma seperated)"%>
             </div>
 
             <div class="form-actions">
               <%= f.button :submit %>
             </div>
         <% end %>
-    <%end%>
-<%end%>
+      <% end %>
+    <% @all_rides.each do |ride| %>
+        <% if ride.include? current_user %>
+            <% found = true %>
+            <% userRide = ride %>
+            <% break %>
+        <% else %>
+          <h2>Where will you be traveling today?</h2>
+            <%= simple_form_for(Ride.new ,html: { class: 'form-horizontal' }) do |f| %>
+                <%= f.error_notification %>
 
-<tbody style="border: double">
-<% @rides.each do |ride| %>
-      <% if ride.travelers.include? current_user.username %>
-        <h2>It looks like you are part of a party already. Hit show to see more details!</h2>
-        <tr>
-          <td>Address: <%= ride.address %></td>
-        </tr>
-        <br>
-        <tr>
-          <td>Party members: <%= ride.travelers %></td>
-        </tr>
-        <br>
-        <tr>
-          <td><%= link_to 'Show', ride%></td>
-          <td><%= link_to 'Edit', edit_ride_path(ride) %></td>
-          <td><%= link_to 'Destroy', ride, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <%end%>
-<% end %>
-</tbody>
+                <div class="form-inputs">
+                  <%= f.input :address, :required => true %>
+                  <%= f.input :travelers , :required => true%>
+                </div>
+
+                <div class="form-actions">
+                  <%= f.button :submit %>
+                </div>
+            <% end %>
+        <%end%>
+    <%end%>
+
+    <tbody style="border: double">
+    <% @rides.each do |ride| %>
+          <% if ride.travelers.include? current_user.username %>
+            <h2>It looks like you are part of a party already. Hit show to see more details!</h2>
+            <tr>
+              <td>Address: <%= ride.address %></td>
+            </tr>
+            <br>
+            <tr>
+              <td>Party members: <%= ride.travelers %></td>
+            </tr>
+            <br>
+            <tr>
+              <td><%= link_to 'Show', ride%></td>
+              <td><%= link_to 'Edit', edit_ride_path(ride) %></td>
+              <td><%= link_to 'Destroy', ride, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <%end%>
+    <% end %>
+    </tbody>
+</div>
+
 
 <!--<h1>Listing rides</h1>-->
 

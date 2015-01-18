@@ -1,6 +1,7 @@
 require 'pry'
 require 'pry-nav'
 require 'util'
+require 'geocoder'
 class RidesController < ApplicationController
   before_action :set_ride, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
@@ -23,7 +24,6 @@ class RidesController < ApplicationController
     @rider_objects = Array.new
     @rider_objects = convert_to_obj_arr(arr,@rider_objects,@ride.travelers)
 
-    # binding.pry
     coords = []
     @rider_objects.each do |rider|
       coord = [rider.latitude, rider.longitude]
@@ -39,7 +39,10 @@ class RidesController < ApplicationController
       end
     end
     @coord_list = coord_list
-    respond_with(@ride,@rider_objects, @minPath,@coord_list )
+    address = @ride.address
+    @dest_coords = Geocoder.coordinates(address)
+
+    respond_with(@ride,@rider_objects, @minPath,@coord_list, @dest_coords )
   end
 
   def new
@@ -52,6 +55,7 @@ class RidesController < ApplicationController
 
   def create
     @ride = Ride.new(ride_params)
+    @address = @ride.address
     @ride.travelers = @ride.travelers + ",#{current_user.username}"
     arr = @ride.travelers.split(%r{,\s*})
     @rider_objects = convert_to_obj_arr_redo(arr)

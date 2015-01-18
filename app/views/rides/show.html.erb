@@ -11,13 +11,14 @@
 </p>
 
 <p>Clusters are:</p>
-<%= @coord_list %>
 
 <%= link_to 'Edit', edit_ride_path(@ride) %> |
 <%= link_to 'Back', rides_path %>
 <script type="text/javascript">
     function initialize() {
         var coordList = '<%= @coord_list %>';
+        var address = '<%= @dest_coords %>';
+        address = JSON.parse(address);
         coordList = JSON.parse(coordList);
         var newCoordList = [];
         //linearizes the 2D array
@@ -26,9 +27,8 @@
                 newCoordList.push(coordList[list][cluster]);
             }
         }
-        console.log(newCoordList);
-        console.log(newCoordList);
-        var myLatlng = new google.maps.LatLng(37.79870987,-122.59419633);
+
+        var myLatlng = new google.maps.LatLng(address[0],address[1]);
         var mapOptions = {
             zoom: 10,
             center: myLatlng
@@ -47,7 +47,6 @@
             var colorIdx = clusterIdx%4;
             var temp = [];
             for (coordIdx in coordList[clusterIdx]) {
-                console.log(coordList[clusterIdx][coordIdx][0],coordList[clusterIdx][coordIdx][1]);
                 var aPoint = new google.maps.LatLng(coordList[clusterIdx][coordIdx][0],coordList[clusterIdx][coordIdx][1]);
                 var aMarker = new google.maps.Marker({
                     position: aPoint,
@@ -56,7 +55,6 @@
                 });
                 aMarker.setMap(map);
                 temp.push(aPoint);
-                console.log(temp);
             }
             temp.push(myLatlng); //final end point of every cluster
 //            console.log(temp);
