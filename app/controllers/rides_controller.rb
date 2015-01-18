@@ -41,7 +41,6 @@ class RidesController < ApplicationController
     @coord_list = coord_list
     address = @ride.address
     @dest_coords = Geocoder.coordinates(address)
-
     respond_with(@ride,@rider_objects, @minPath,@coord_list, @dest_coords )
   end
 

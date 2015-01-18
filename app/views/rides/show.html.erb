@@ -1,78 +1,88 @@
 <p id="notice"><%= notice %></p>
+<div class="container" id="show_graph">
+  <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Address </h3>
+        </div>
+        <div class="panel-body">
+            <%= @ride.address %>
+        </div>
+  </div>
 
-<p>
-  <strong>Address:</strong>
-  <%= @ride.address %>
-</p>
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title">Travelers </h3>
+    </div>
+    <div class="panel-body">
+      <%= @ride.travelers %>
+    </div>
+  </div>
 
-<p>
-  <strong>Travelers:</strong>
-  <%= @ride.travelers %>
-</p>
+  <p>Clusters are:</p>
 
-<p>Clusters are:</p>
+  <button class="btn btn-primary"<%= link_to 'Edit', edit_ride_path(@ride), :id => 'edit_graph' %> </button>|
+  <%= link_to 'Back', rides_path %>
+  <script type="text/javascript">
+      function initialize() {
+          var coordList = '<%= @coord_list %>';
+          var address = '<%= @dest_coords %>';
+          address = JSON.parse(address);
+          coordList = JSON.parse(coordList);
+          var newCoordList = [];
+          //linearizes the 2D array
+          for (list in coordList) {
+              for (cluster in coordList[list]) {
+                  newCoordList.push(coordList[list][cluster]);
+              }
+          }
 
-<%= link_to 'Edit', edit_ride_path(@ride) %> |
-<%= link_to 'Back', rides_path %>
-<script type="text/javascript">
-    function initialize() {
-        var coordList = '<%= @coord_list %>';
-        var address = '<%= @dest_coords %>';
-        address = JSON.parse(address);
-        coordList = JSON.parse(coordList);
-        var newCoordList = [];
-        //linearizes the 2D array
-        for (list in coordList) {
-            for (cluster in coordList[list]) {
-                newCoordList.push(coordList[list][cluster]);
-            }
-        }
+          var myLatlng = new google.maps.LatLng(address[0],address[1]);
+          var mapOptions = {
+              zoom: 12,
+              center: myLatlng
+          };
+          var marker = new google.maps.Marker({
+              position: myLatlng,
+              title:"Drag me!",
+              draggable: true
+          });
+          markers =[];
+          var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
-        var myLatlng = new google.maps.LatLng(address[0],address[1]);
-        var mapOptions = {
-            zoom: 10,
-            center: myLatlng
-        };
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            title:"Drag me!",
-            draggable: true
-        });
-        markers =[];
-        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
-        marker.setMap(map);
-        var colors = ['#42FF23','#FF0000','#FFF8000','0000FF'];
-        for (clusterIdx in coordList) {
-            var colorIdx = clusterIdx%4;
-            var temp = [];
-            for (coordIdx in coordList[clusterIdx]) {
-                var aPoint = new google.maps.LatLng(coordList[clusterIdx][coordIdx][0],coordList[clusterIdx][coordIdx][1]);
-                var aMarker = new google.maps.Marker({
-                    position: aPoint,
-                    map: map,
-                    draggable: true
-                });
-                aMarker.setMap(map);
-                temp.push(aPoint);
-            }
-            temp.push(myLatlng); //final end point of every cluster
+          marker.setMap(map);
+          var colors = ['#42FF23','#FF0000','#FFF8000','0000FF'];
+          for (clusterIdx in coordList) {
+              var colorIdx = clusterIdx%4;
+              var temp = [];
+              for (coordIdx in coordList[clusterIdx]) {
+                  var aPoint = new google.maps.LatLng(coordList[clusterIdx][coordIdx][0],coordList[clusterIdx][coordIdx][1]);
+                  var aMarker = new google.maps.Marker({
+                      position: aPoint,
+                      map: map,
+                      draggable: true
+                  });
+                  aMarker.setMap(map);
+                  temp.push(aPoint);
+              }
+              temp.push(myLatlng); //final end point of every cluster
 //            console.log(temp);
 
-            var path = new google.maps.Polyline( {
-                path: temp,
-                geodesic: true,
-                strokeColor: colors[colorIdx],
-                strokeOpacity: 1.0,
-                strokeWeight: 3
-            });
-            path.setMap(map);
-        }
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
+              var path = new google.maps.Polyline( {
+                  path: temp,
+                  geodesic: true,
+                  strokeColor: colors[colorIdx],
+                  strokeOpacity: 1.0,
+                  strokeWeight: 3
+              });
+              path.setMap(map);
+          }
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
 
-</script>
-<div style="height: 35em; margin: 0px;padding: 0px;width: 35em;">
-  <div id="map-canvas" style="height:100%; width:100%;"></div>
+  </script>
+  <div style="height:40em; margin: 0px;padding: 0px;width: 100%;">
+    <div id="map-canvas" style="height:100%; width:100%;"></div>
+
+  </div>
 
 </div>
