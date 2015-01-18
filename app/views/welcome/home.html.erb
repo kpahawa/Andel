@@ -1,0 +1,17 @@
+<h1>Hello</h1>
+
+<h2>Invite a friend to go somewhere!</h2>
+
+
+    <%= simple_form_for(Ride.new) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :address, :required => true %>
+          <%= f.input :travelers , :required => true%>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit %>
+        </div>
+    <% end %>

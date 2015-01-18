@@ -1,0 +1,80 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @ride.address %>
+</p>
+
+<p>
+  <strong>Travelers:</strong>
+  <%= @ride.travelers %>
+</p>
+
+<p>Clusters are:</p>
+<%= @coord_list %>
+
+<%= link_to 'Edit', edit_ride_path(@ride) %> |
+<%= link_to 'Back', rides_path %>
+<script type="text/javascript">
+    function initialize() {
+        var coordList = '<%= @coord_list %>';
+        coordList = JSON.parse(coordList);
+        var newCoordList = [];
+        //linearizes the 2D array
+        for (list in coordList) {
+            for (cluster in coordList[list]) {
+                newCoordList.push(coordList[list][cluster]);
+            }
+        }
+        console.log(newCoordList);
+        console.log(newCoordList);
+        var myLatlng = new google.maps.LatLng(37.79870987,-122.59419633);
+        var mapOptions = {
+            zoom: 10,
+            center: myLatlng
+        };
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            title:"Drag me!",
+            draggable: true
+        });
+        markers =[];
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+        marker.setMap(map);
+        var colors = ['#42FF23','#FF0000','#FFF8000','0000FF'];
+        for (clusterIdx in coordList) {
+            var colorIdx = clusterIdx%4;
+            var temp = [];
+            for (coordIdx in coordList[clusterIdx]) {
+                console.log(coordList[clusterIdx][coordIdx][0],coordList[clusterIdx][coordIdx][1]);
+                var aPoint = new google.maps.LatLng(coordList[clusterIdx][coordIdx][0],coordList[clusterIdx][coordIdx][1]);
+                var aMarker = new google.maps.Marker({
+                    position: aPoint,
+                    map: map,
+                    draggable: true
+                });
+                aMarker.setMap(map);
+                temp.push(aPoint);
+                console.log(temp);
+            }
+            temp.push(myLatlng); //final end point of every cluster
+//            console.log(temp);
+
+            var path = new google.maps.Polyline( {
+                path: temp,
+                geodesic: true,
+                strokeColor: colors[colorIdx],
+                strokeOpacity: 1.0,
+                strokeWeight: 3
+            });
+            path.setMap(map);
+        }
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+<div style="height: 35em; margin: 0px;padding: 0px;width: 35em;">
+  <div id="map-canvas" style="height:100%; width:100%;"></div>
+
+</div>
