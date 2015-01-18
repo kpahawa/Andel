@@ -6,7 +6,7 @@ require 'excon'
 #require 'pry'
 #require 'pry-nav'
 def all_the_things(param)
-    data = [[37.82954724, -122.43192352], [37.8209866, -122.4598095], [37.8119052, -122.43173582], [37.73665126, -122.40772316]]
+    data = param
     temp = Marshal.load(Marshal.dump(data))
     xpos = temp[0][0] > 0
     ypos = temp[0][1] > 0
