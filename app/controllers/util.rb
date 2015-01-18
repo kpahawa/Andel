@@ -279,3 +279,29 @@ def distance a, b
 
   return rm * c # Delta in meters
 end
+
+def sort_sources(sources, destination)
+  result = []
+  sources.each do |x|
+    temp = []
+    while x.size > 0
+      minIndex = 0
+      minVal = 99999999
+      index = 0
+      x.each do |y|
+        src = Marshal.load(Marshal.dump(y))
+        dst = Marshal.load(Marshal.dump(destination))
+        difference = distance src, dst
+        if difference < minVal
+          mindVal = difference
+          minIndex = index
+        end
+        index+=1
+      end
+      temp.push(x[minIndex])
+      x.delete_at(minIndex)
+    end
+    result.push(temp)  
+  end
+  return result
+end  
