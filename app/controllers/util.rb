@@ -273,13 +273,10 @@ end
 
 def sort_sources(sources, destination)
   result = []
-<<<<<<< HEAD
-  # binding.pry
-  sources.each do |x|
-=======
+
   sources.keys.each do |key|
     x = sources[key]
->>>>>>> 4ae1946dbb5ec2a2a15a1def25e7f21ccf1389ea
+
     temp = []
     while x.size > 0
       minIndex = 0
