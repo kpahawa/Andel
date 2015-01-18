@@ -29,8 +29,8 @@
                 <%= f.error_notification %>
 
                 <div class="form-inputs">
-                  <%= f.input :address, :required => true %>
-                  <%= f.input :travelers , :required => true%>
+                  <%= f.input :address, :required => true ,:label => "Address (Location,City,State)"%>
+                  <%= f.input :travelers , :required => true, :label => "Travelers (comma seperated)"%>
                 </div>
 
                 <div class="form-actions">
@@ -40,7 +40,10 @@
         <%end%>
     <%end%>
 
-    <tbody style="border: double">
+  <% party = 0 %>
+
+  <tbody style="border: double">
+
     <% @rides.each do |ride| %>
           <% if ride.travelers.include? current_user.username %>
             <h2>It looks like you are part of a party already. Hit show to see more details!</h2>
