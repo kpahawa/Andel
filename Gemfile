@@ -10,6 +10,7 @@ gem 'k_means'
 gem 'geokit'
 gem 'json'
 gem 'excon'
+gem 'google_distance_matrix'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'

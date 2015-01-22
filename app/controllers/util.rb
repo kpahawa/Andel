@@ -3,6 +3,7 @@ require 'k_means'
 require 'geokit'
 require 'json'
 require 'excon'
+require 'google_distance_matrix'
 #require 'pry'
 #require 'pry-nav'
 def all_the_things(param)
@@ -66,7 +67,7 @@ def all_the_things(param)
 
     groupings = []
     solution = solution.delete_if { |elem| elem.flatten.empty? }
-
+    #removed empty clusters
     solution.each do |x|
         toGroup = []
         x.each do |y|
@@ -82,7 +83,8 @@ def all_the_things(param)
                 a = Marshal.load(Marshal.dump(toCompare))
                 b = Marshal.load(Marshal.dump(item))
                 difference = distance a, b
-
+                #source = GoogleDistanceMatrix::Place.new lng: toCompare[1], lat: toCompare[0]
+                #destination = GoogleDistanceMatrix::Place.new lng: item[1], lat: item[0]
                 if difference < 4023
                     toRet.push(item)
                     toGroup.delete(item)
