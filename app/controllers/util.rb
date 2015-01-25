@@ -82,14 +82,12 @@ def all_the_things(param)
             toGroup.each do |item|
                 a = Marshal.load(Marshal.dump(toCompare))
                 b = Marshal.load(Marshal.dump(item))
-                difference = distance a, b
+                #difference = distance a, b
                 matrix = GoogleDistanceMatrix::Matrix.new
                 source = GoogleDistanceMatrix::Place.new lng: toCompare[1], lat: toCompare[0]
                 destination = GoogleDistanceMatrix::Place.new lng: item[1], lat: item[0]
-                sourceAddress = GoogleDistanceMatrix::Place.new address: "source"
-                destinationAddress = GoogleDistanceMatrix::Place.new address: "destination"
-                matrix.origins << source << sourceAddress
-                matrix.destinations << destination << destinationAddress
+                matrix.origins << source
+                matrix.destinations << destination
 
                 matrix.configure do |config|
                   #config.avoid = ['tolls']
@@ -97,10 +95,11 @@ def all_the_things(param)
                   #config.google_business_api_client_id = "929264483068-vh26i93rv1tbjgqm5c858voj53pevbbv.apps.googleusercontent.com"
                   config.google_business_api_private_key = "AIzaSyD7-NZHzbI_U-D4lfiq7W8-CkJlPKSvNKU"
                 end
-
-                puts matrix.data.inspect
-
-                #almost there, just have to index in and get value and use that as heuristic
+                #use driving distance as heuristic instead of euclidean distance. this should work properly, must test it in app
+                difference = 0
+                matrix.data[0].each do |test|
+                  difference = test.distance_in_meters
+                end
 
                 if difference < 4023
                     toRet.push(item)
@@ -320,4 +319,4 @@ def sort_the_sources(sources, destination)
 end  
 
 
-all_the_things([[37.82954724, -122.43192352], [37.8209866, -122.4598095], [37.8119052, -122.43173582], [37.73665126, -122.40772316]])
+puts all_the_things([[37.82954724, -122.43192352], [37.8209866, -122.4598095], [37.8119052, -122.43173582], [37.73665126, -122.40772316]])
