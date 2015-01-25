@@ -97,11 +97,13 @@ def all_the_things(param)
                 end
                 #use driving distance as heuristic instead of euclidean distance. this should work properly, must test it in app
                 difference = 0
+                timeToDrive = 0
                 matrix.data[0].each do |test|
                   difference = test.distance_in_meters
+                  timeToDrive = test.duration_in_seconds.to_f / 60
                 end
 
-                if difference < 4023
+                if difference < 4023 and timeToDrive < 10
                     toRet.push(item)
                     toGroup.delete(item)
                 end
@@ -319,4 +321,4 @@ def sort_the_sources(sources, destination)
 end  
 
 
-puts all_the_things([[37.82954724, -122.43192352], [37.8209866, -122.4598095], [37.8119052, -122.43173582], [37.73665126, -122.40772316]])
+#puts all_the_things([[37.82954724, -122.43192352], [37.8209866, -122.4598095], [37.8119052, -122.43173582], [37.73665126, -122.40772316]])
