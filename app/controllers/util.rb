@@ -83,21 +83,20 @@ def all_the_things(param)
                 a = Marshal.load(Marshal.dump(toCompare))
                 b = Marshal.load(Marshal.dump(item))
                 difference = distance a, b
-                #matrix = GoogleDistanceMatrix::Matrix.new
-                #source = GoogleDistanceMatrix::Place.new lng: toCompare[1], lat: toCompare[0]
-                #destination = GoogleDistanceMatrix::Place.new lng: item[1], lat: item[0]
-                #sourceAddress = GoogleDistanceMatrix::Place.new address: "source"
-                #destinationAddress = GoogleDistanceMatrix::Place.new address: "destination"
-                #matrix.origins << source << sourceAddress
-                #matrix.destinations << destination << destinationAddress
+                matrix = GoogleDistanceMatrix::Matrix.new
+                source = GoogleDistanceMatrix::Place.new lng: toCompare[1], lat: toCompare[0]
+                destination = GoogleDistanceMatrix::Place.new lng: item[1], lat: item[0]
+                sourceAddress = GoogleDistanceMatrix::Place.new address: "source"
+                destinationAddress = GoogleDistanceMatrix::Place.new address: "destination"
+                matrix.origins << source << sourceAddress
+                matrix.destinations << destination << destinationAddress
 
-                # matrix.configure do |config|
-                #   config.mode = ['driving']
-                #   config.avoid = ['tolls']
-                # # To build signed URLs to use with a Google Business account
-                #   config.google_business_api_client_id = "929264483068-vh26i93rv1tbjgqm5c858voj53pevbbv.apps.googleusercontent.com"
-                #   config.google_business_api_private_key = "AIzaSyD7-NZHzbI_U-D4lfiq7W8-CkJlPKSvNKU"
-                # end
+                matrix.configure do |config|
+                  config.avoid = ['tolls']
+                # To build signed URLs to use with a Google Business account
+                  config.google_business_api_client_id = "929264483068-vh26i93rv1tbjgqm5c858voj53pevbbv.apps.googleusercontent.com"
+                  config.google_business_api_private_key = "AIzaSyD7-NZHzbI_U-D4lfiq7W8-CkJlPKSvNKU"
+                end
 
 
 
