@@ -92,13 +92,15 @@ def all_the_things(param)
                 matrix.destinations << destination << destinationAddress
 
                 matrix.configure do |config|
-                  config.avoid = ['tolls']
+                  #config.avoid = ['tolls']
                 # To build signed URLs to use with a Google Business account
-                  config.google_business_api_client_id = "929264483068-vh26i93rv1tbjgqm5c858voj53pevbbv.apps.googleusercontent.com"
+                  #config.google_business_api_client_id = "929264483068-vh26i93rv1tbjgqm5c858voj53pevbbv.apps.googleusercontent.com"
                   config.google_business_api_private_key = "AIzaSyD7-NZHzbI_U-D4lfiq7W8-CkJlPKSvNKU"
                 end
 
+                puts matrix.data.inspect
 
+                #almost there, just have to index in and get value and use that as heuristic
 
                 if difference < 4023
                     toRet.push(item)
